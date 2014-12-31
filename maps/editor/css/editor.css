@@ -1,0 +1,5 @@
+.panel_tiles .tile{
+    position: static;
+    float: left;
+    margin: 5px;
+}

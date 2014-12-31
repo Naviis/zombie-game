@@ -1,0 +1,286 @@
+*,*:before, *:after{
+    box-sizing: border-box;
+}
+
+.clearfix:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+body,html{
+    height: 100%;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    
+    font-family: Helvetica, arial;
+}
+/**********************************\
+    $VIEWPORT
+\**********************************/
+
+.viewport{
+    width: 80%;
+    height: 100%;
+    background: #000 url(../images/bg.jpg) no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    
+    overflow: auto;
+}
+
+/**********************************\
+    $PANEL
+\**********************************/
+
+.panel{
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 20px;
+    width: 20%;
+    height: 100%;
+    
+    background-color: #333;
+    color: #fff;
+    
+    overflow: auto;
+}
+
+    .panel_inner{
+        display: none;
+    }
+
+        .panel_avatar{
+            margin: 0 auto 20px;
+            height: 100px;
+            width: 100px;
+
+            background-color: #666;
+
+            border-radius: 50%;
+        }
+
+            .panel_avatar img{
+                max-width: 100%;
+                border-radius: 50%;
+            }
+
+        .panel_name{
+            padding: 20px 0;
+            margin-bottom: 20px;
+
+            border: 1px solid #666;
+            border-right: 0;
+            border-left: 0;
+
+            font-size: 25px;
+            font-weight: lighter;
+            letter-spacing: 3px;
+            text-transform: capitalize;
+            text-align: center;
+
+        }
+
+        .panel_actions_points{
+            margin-bottom: 20px;
+        }
+
+            .panel_actions_points span{
+                display: inline-block;
+            }
+
+            .panel_actions_points ul{
+                display: inline-block;
+                padding: 0;
+                margin: 0 0 20px;
+            }
+
+                .panel_actions_points li{
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin-right: 5px;
+                    width: 20px;
+                    height: 20px;
+
+                    background-color: #666;
+
+                    list-style: none;                    
+                    border-radius: 50%;
+                }
+
+                .panel_actions_points li.active{
+                    background-color: green;
+                }
+
+            .panel_button{
+                display: block;
+                margin-bottom: 5px;
+                width: 100%;
+                padding: 10px;
+
+                border: 0;
+                background-color: #666;
+                text-transform: uppercase;
+            }
+
+        .panel_inventory{
+
+        }
+
+            .panel_slot{
+                float: left;
+                width: 49%;        
+                height: 200px;
+
+                border: 1px solid #666;
+            }
+
+            .panel_slot:first-child{
+                margin-right: 1%;
+            }
+
+/**********************************\
+    $WRAPPER
+\**********************************/
+
+.wrapper{
+    position: relative;
+    margin: 0 auto;
+}
+
+/**********************************\
+    $TILES
+\**********************************/
+
+.tile{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+
+/* base */
+.tile_base_1{
+    background: url(../images/textures/sprite.png) no-repeat -150px -50px;
+}
+.tile_base_2{
+    background: url(../images/textures/sprite.png) no-repeat -200px -50px;
+}
+.tile_base_3{
+    background: url(../images/textures/sprite.png) no-repeat -250px -50px;
+}
+.tile_base_4{
+    background: url(../images/textures/sprite.png) no-repeat -300px -50px;
+}
+.tile_base_5{
+    background: url(../images/textures/sprite.png) no-repeat -300px -50px;
+}
+.tile_base_6{
+    background: url(../images/textures/sprite.png) no-repeat 0px -50px;
+}
+.tile_base_7{
+    background: url(../images/textures/sprite.png) no-repeat -50px -50px;
+}
+.tile_base_8{
+    background: url(../images/textures/sprite.png) no-repeat -100px -50px;
+}
+.tile_base_9{
+    background: url(../images/textures/sprite.png) no-repeat 0px -100px;
+}
+.tile_base_10{
+    background: url(../images/textures/sprite.png) no-repeat -50px -100px;
+}
+.tile_base_11{
+    background: url(../images/textures/sprite.png) no-repeat -100px -100px;
+}
+
+/* wall */
+.tile_wall_1{
+    background: url(../images/textures/sprite.png) no-repeat 0px -200px;
+}
+.tile_wall_2{
+    background: url(../images/textures/sprite.png) no-repeat -50px -200px;
+}
+.tile_wall_3{
+    background: url(../images/textures/sprite.png) no-repeat -100px -200px;
+}
+.tile_wall_4{
+    background: url(../images/textures/sprite.png) no-repeat 0px -250px;
+}
+.tile_wall_5{
+    background: url(../images/textures/sprite.png) no-repeat -100px -250px;
+}
+.tile_wall_6{
+    background: url(../images/textures/sprite.png) no-repeat 0px -300px;
+}
+.tile_wall_7{
+    background: url(../images/textures/sprite.png) no-repeat -50px -300px;
+}
+.tile_wall_8{
+    background: url(../images/textures/sprite.png) no-repeat -100px -300px;
+}
+
+/**********************************\
+    $EVOLUTIVES
+\**********************************/
+
+.evolutive{
+    z-index: 100;
+}
+
+/* door */
+.evolutive_door_1{
+    background-color: #000;
+}
+
+/**********************************\
+    $MONSTERS
+\**********************************/
+
+.monster{
+    z-index: 102;
+}
+
+.monster_walker{
+    background: url(../images/textures/sprite.png) no-repeat 0 0;
+}
+
+/**********************************\
+    $PLAYERS
+\**********************************/
+
+.player{
+    z-index: 102;
+}
+
+.player_rick{
+    background-color: blue;
+}
+
+.player_shane{
+    background-color: green;
+}
+
+.player_selected{
+    border: 2px dashed red;
+}
+/**********************************\
+    $NOTIFICATION
+\**********************************/
+
+.notification{
+    position: absolute;
+    right: -10px;
+    left: -10px;
+    width: 20px;
+    height: 20px;
+    
+    background-color: orange;
+    
+    border-radius: 50%;
+    text-align: center;
+    z-index: 103;
+}

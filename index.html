@@ -1,0 +1,53 @@
+<!doctype html>
+<!--[if lte IE 7]> <html class="no-js ie67 ie678" lang="fr"> <![endif]-->
+<!--[if IE 8]> <html class="no-js ie8 ie678" lang="fr"> <![endif]-->
+<!--[if IE 9]> <html class="no-js ie9" lang="fr"> <![endif]-->
+<!--[if gt IE 9]> <!--><html class="no-js" lang="fr"> <!--<![endif]-->
+<head>
+		<meta charset="UTF-8">
+		<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+		<title>Zombie game</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!--[if lt IE 9]>
+		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" href="css/scene.css">
+</head>
+<body>
+	
+	<div class="viewport">
+	    <div class="wrapper"></div>
+	</div>
+	
+	<div class="panel">
+	    <div class="panel_inner">
+	        <div class="panel_avatar"></div>
+	        <div class="panel_name">Josh</div>
+	        <div class="panel_actions">
+	            <div class="panel_actions_points">
+	                <span>PA :</span> 	                
+	                <ul></ul>	                
+	                <button class="panel_button">Déplacer</button>
+	                <button class="panel_button">Attaquer</button>
+	                <button class="panel_button">Fouiller</button>
+	            </div>
+	        </div>
+	        <div class="panel_inventory clearfix">
+	            <div class="panel_slot slot_1"></div>
+	            <div class="panel_slot slot_2"></div>
+	        </div>
+	    </div>
+	</div>
+	
+	<script src="lib/jquery.min.js"></script>
+	<script src="lib/astar.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/View.js"></script>
+	<script src="js/Equipment.js"></script>
+	<script src="js/Player.js"></script>
+	<script src="js/Monster.js"></script>
+	<script src="js/Scene.js"></script>
+	<script src="js/main.js"></script>
+	
+</body>
+</html>
