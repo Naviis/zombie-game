@@ -25,26 +25,85 @@
         <h4>Dimensions</h4>
         
 	    <div class="panel_row">
-	        <label for="">Largeur</label> <input type="text" name="width">
+	        <label for="">Largeur</label> <input type="text" name="width" value="10">
 	    </div>
         <div class="panel_row">
-	        <label for="">Hauteur</label> <input type="text" name="height">
+	        <label for="">Hauteur</label> <input type="text" name="height" value="10">
 	    </div>
+	    
+	    <h4>Grille</h4>
+	    
+	    Afficher/cacher <input type="checkbox" name="show_grid" value="1" checked>
+	    
+	    <h4>Calque</h4>
+	    
+	    <select class="panel_layers">
+	        <option value="0">Calque 0</option> 
+	    </select>
+	    
+	    <button class="panel_addLayer">Ajouter un calque</button>
 	    
 	    <h4>Tuiles</h4>
 	    
 	    <div class="panel_tiles clearfix">
-	        <div class="tile tile_base_1"></div>
-	        <div class="tile tile_base_2"></div>
-	        <div class="tile tile_base_3"></div>
-	        <div class="tile tile_base_4"></div>
-	        <div class="tile tile_base_5"></div>
-	        <div class="tile tile_base_6"></div>
-	        <div class="tile tile_base_7"></div>
-	        <div class="tile tile_base_8"></div>
-	        <div class="tile tile_base_9"></div>
-	        <div class="tile tile_base_10"></div>
-	        <div class="tile tile_base_11"></div>
+        
+	        <div class="tile tile_base_1 selected" data-class="tile_base_1"></div>
+	        <div class="tile tile_base_2" data-class="tile_base_2"></div>
+	        <div class="tile tile_base_3" data-class="tile_base_3"></div>
+	        <div class="tile tile_base_4" data-class="tile_base_4"></div>
+	        
+	        <div class="clear"></div>
+	        
+	        <div class="tile tile_crosswalk_1" data-class="tile_crosswalk_1"></div>
+	        <div class="tile tile_crosswalk_2" data-class="tile_crosswalk_2"></div>
+	        <div class="tile tile_crosswalk_3" data-class="tile_crosswalk_3"></div>
+	        <div class="clear"></div>
+	        <div class="tile tile_crosswalk_4" data-class="tile_crosswalk_4"></div>
+	        <div class="tile tile_crosswalk_5" data-class="tile_crosswalk_5"></div>
+	        <div class="tile tile_crosswalk_6" data-class="tile_crosswalk_6"></div>
+	        
+	        <div class="clear"></div>
+	        
+	        <div class="tile tile_wall_1" data-class="tile_wall_1"></div>
+	        <div class="tile tile_wall_2" data-class="tile_wall_2"></div>
+	        <div class="tile tile_wall_3" data-class="tile_wall_3"></div>
+	        <div class="tile tile_wall_4" data-class="tile_wall_4"></div>
+	        <div class="tile tile_wall_5" data-class="tile_wall_5"></div>
+	        <div class="tile tile_wall_6" data-class="tile_wall_6"></div>
+	        <div class="tile tile_wall_7" data-class="tile_wall_7"></div>
+	        <div class="tile tile_wall_8" data-class="tile_wall_8"></div>
+	        
+	        <div class="clear"></div>
+	        
+	        <div class="tile evolutive_door_1" data-class="evolutive_door_1" data-type="evolutive"></div>
+	        
+	    </div>
+	    
+	    <h4>Collision</h4>
+	    
+	    <div class="panel_tiles clearfix">
+	        <div class="tile collision" data-class="collision" data-type="collision"></div>
+	    </div>
+	    
+	    <h4>Monstres</h4>
+	    
+	    <div class="panel_tiles clearfix">
+	        <div class="tile monster_walker" data-class="monster_walker" data-type="monster" data-monster-type="walker"></div>
+	    </div>
+	    
+	    <h4>Joueurs</h4>
+	    
+	    <div class="panel_tiles clearfix">
+	        <div class="tile player_rick" data-class="player_rick" data-type="player" data-player-type="rick"></div>
+	        <div class="tile player_shane" data-class="player_shane" data-type="player" data-player-type="shane"></div>
+	    </div>
+	    
+	    <h4>Gomme</h4>
+	    
+	    <div class="panel_tiles clearfix">
+	        <div class="tile erase" data-type="erase_tile">GT</div>
+	        <div class="tile erase" data-type="erase_collision">GC</div>
+	        <div class="tile erase" data-type="erase_evolutive">GE</div>
 	    </div>
 	</div>
 	

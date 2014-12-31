@@ -25,7 +25,7 @@ View.prototype = {
         Redraw the canvas
     */
     draw : function(){
-        console.log(this.scene.map);
+        
         var self = this;
         var $parent = $(this.scene.parent);
         
@@ -34,25 +34,28 @@ View.prototype = {
         /* Draw tiles */
         for( var l = 0; l < this.scene.map.tiles_layers.length ; l++ ){
             var layer = this.scene.map.tiles_layers[l];
-            for( var i = 0; i < layer.length ; i++ ){
-                for( var j = 0; j < layer[0].length ; j++ ){
-                    var value = layer[i][j];
-                    var $tile = $('<div class="tile"></div>').addClass(value)
-                                                             .attr('id','tile_'+i+'_'+j)
+            for( var y = 0; y < layer.length ; y++ ){
+                for( var x = 0; x < layer[0].length ; x++ ){
+                    var value = layer[y][x];
+                    
+                    if( value != '' ){
+                        var $tile = $('<div class="tile"></div>').addClass(value)
+                                                             .attr('id','tile_'+x+'_'+y)
                                                              .css({'z-index':l});
-                    this.drawTile($tile,i,j);
+                        this.drawTile($tile,x,y);
+                    }                    
                 }
             }
         }
         
         /* Draw evolutives */
-        for( var i = 0; i < this.scene.map.evolutive_layer.length ; i++ ){
-            for( var j = 0; j < this.scene.map.evolutive_layer[0].length ; j++ ){
-                var value = this.scene.map.evolutive_layer[i][j];
+        for( var y = 0; y < this.scene.map.evolutive_layer.length ; y++ ){
+            for( var x = 0; x < this.scene.map.evolutive_layer[0].length ; x++ ){
+                var value = this.scene.map.evolutive_layer[y][x];
                 
                 if( value !== 0 ){
-                    var $tile = $('<div class="tile evolutive"></div>').addClass(value).attr('id','tile_'+i+'_'+j);
-                    this.drawTile($tile,i,j);
+                    var $tile = $('<div class="tile evolutive"></div>').addClass(value).attr('id','tile_'+x+'_'+y);
+                    this.drawTile($tile,x,y);
                 }
                 
             }
@@ -92,7 +95,7 @@ View.prototype = {
     */
     drawTile : function($tile,x,y){
         var $parent = $(this.scene.parent);
-        $tile.css({top: this.scene.tile_w*x, left: this.scene.tile_w*y });
+        $tile.css({left: this.scene.tile_w*x, top: this.scene.tile_w*y });
         $parent.append($tile);
     },
     

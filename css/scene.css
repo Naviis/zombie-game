@@ -164,36 +164,34 @@ body{
 
 /* base */
 .tile_base_1{
-    background: url(../images/textures/sprite.png) no-repeat -150px -50px;
+    background: url(../images/textures/sprite.png) no-repeat -300px -50px;
 }
 .tile_base_2{
-    background: url(../images/textures/sprite.png) no-repeat -200px -50px;
+    background: url(../images/textures/sprite.png) no-repeat -150px -50px;
 }
 .tile_base_3{
-    background: url(../images/textures/sprite.png) no-repeat -250px -50px;
+    background: url(../images/textures/sprite.png) no-repeat -200px -50px;
 }
 .tile_base_4{
-    background: url(../images/textures/sprite.png) no-repeat -300px -50px;
+    background: url(../images/textures/sprite.png) no-repeat -250px -50px;
 }
-.tile_base_5{
-    background: url(../images/textures/sprite.png) no-repeat -300px -50px;
-}
-.tile_base_6{
+
+.tile_crosswalk_1{
     background: url(../images/textures/sprite.png) no-repeat 0px -50px;
 }
-.tile_base_7{
+.tile_crosswalk_2{
     background: url(../images/textures/sprite.png) no-repeat -50px -50px;
 }
-.tile_base_8{
+.tile_crosswalk_3{
     background: url(../images/textures/sprite.png) no-repeat -100px -50px;
 }
-.tile_base_9{
+.tile_crosswalk_4{
     background: url(../images/textures/sprite.png) no-repeat 0px -100px;
 }
-.tile_base_10{
+.tile_crosswalk_5{
     background: url(../images/textures/sprite.png) no-repeat -50px -100px;
 }
-.tile_base_11{
+.tile_crosswalk_6{
     background: url(../images/textures/sprite.png) no-repeat -100px -100px;
 }
 

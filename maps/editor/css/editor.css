@@ -1,5 +1,55 @@
+.clear{
+    clear: both;
+    margin: 10px 0;
+}
+
+.tile.selected{
+    border: 1px solid blue;
+}
+
 .panel_tiles .tile{
     position: static;
     float: left;
     margin: 5px;
 }
+
+.tile_interactive{
+    border: 1px solid rgba(255,0,0,.4);
+    z-index: 101;
+}
+
+.tile_interactive.hide{
+    border-color : transparent;
+}
+
+.tile_interactive:hover{
+    background-color: rgba(255,255,255,.3);
+}
+
+.collision{
+    background-color: rgba(255,0,0,.1);
+    border: 1px solid rgba(255,0,0,.3);
+    z-index: 10;
+}
+
+.erase{
+    position: relative!important;
+    background-color: #fff;
+    overflow: hidden;
+    color: black;
+}
+
+    .erase:after{
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: block;
+        width: 1px;
+        height: 150%;
+        
+        background-color: red;
+        
+        transform-origin: 0 bottom;
+        transform: rotate(45deg);
+    }
