@@ -15,7 +15,7 @@
 
 .tile_interactive{
     border: 1px solid rgba(255,0,0,.4);
-    z-index: 101;
+    z-index: 200;
 }
 
 .tile_interactive.hide{

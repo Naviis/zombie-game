@@ -114,6 +114,38 @@ Editor.prototype = {
                     self.map.evolutive_layer[y][x] = 0;
                     self.draw();
                 break;
+                
+                case 'erase_monster':
+                    for(var m = 0; m < self.map.monsters.length; m++){
+                        var monster = self.map.monsters[m];
+                        if(x == monster.x && y == monster.y){
+                            self.map.monsters.splice(m,1);
+                        }
+                    }
+                    self.draw();
+                break;
+                
+                case 'erase_player':
+                    for(var p = 0; p < self.map.players.length; p++){
+                        var player = self.map.players[p];
+                        if(x == player.x && y == player.y){
+                            self.map.players.splice(p,1);
+                        }
+                    }
+                    self.draw();
+                break;
+                
+                case 'monster':
+                    var monster_type = self.current_tile.attr('data-monster-type');
+                    self.map.monsters.push({"type": monster_type,"x":x,"y":y});
+                    self.draw();
+                break;
+                    
+                case 'player':
+                    var player_type = self.current_tile.attr('data-player-type');
+                    self.map.players.push({"type":player_type,"x":x,"y":y,"slot_1":"pistol"});
+                    self.draw();
+                break;
             }
             
         });
@@ -250,6 +282,20 @@ Editor.prototype = {
                 }
                 
             }
+        }
+        
+        /* Draw Monsters */
+        for( var i = 0; i < this.map.monsters.length ; i++ ){
+            var monster = this.map.monsters[i];
+            var $tile = $('<div class="tile monster"></div>').addClass('monster_'+monster.type).attr('id',monster.id);
+            this.drawTile($tile,monster.x,monster.y);
+        }
+        
+        /* Draw players */
+        for( var i = 0; i < this.map.players.length ; i++ ){
+            var player = this.map.players[i];
+            var $tile = $('<div class="tile player"></div>').addClass('player_'+player.type).attr('id',player.id);
+            this.drawTile($tile,player.x,player.y);
         }
         
     },
