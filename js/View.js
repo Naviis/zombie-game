@@ -34,9 +34,9 @@ View.prototype = {
         /* Draw tiles */
         for( var l = 0; l < this.scene.map.tiles_layers.length ; l++ ){
             var layer = this.scene.map.tiles_layers[l];
-            for( var y = 0; y < layer.length ; y++ ){
-                for( var x = 0; x < layer[0].length ; x++ ){
-                    var value = layer[y][x];
+            for( var x = 0; x < layer.length ; x++ ){
+                for( var y = 0; y < layer[0].length ; y++ ){
+                    var value = layer[x][y];
                     
                     if( value != '' ){
                         var $tile = $('<div class="tile"></div>').addClass(value)
@@ -49,9 +49,9 @@ View.prototype = {
         }
         
         /* Draw evolutives */
-        for( var y = 0; y < this.scene.map.evolutive_layer.length ; y++ ){
-            for( var x = 0; x < this.scene.map.evolutive_layer[0].length ; x++ ){
-                var value = this.scene.map.evolutive_layer[y][x];
+        for( var x = 0; x < this.scene.map.evolutive_layer.length ; x++ ){
+            for( var y = 0; y < this.scene.map.evolutive_layer[0].length ; y++ ){
+                var value = this.scene.map.evolutive_layer[x][y];
                 
                 if( value !== 0 ){
                     var $tile = $('<div class="tile evolutive"></div>').addClass(value).attr('id','tile_'+x+'_'+y);
@@ -88,6 +88,19 @@ View.prototype = {
             }
         }
         
+        /* Draw Collision */
+        for( var x = 0; x < this.scene.map.collision_layer.length ; x++ ){
+            for( var y = 0; y < this.scene.map.collision_layer[0].length ; y++ ){
+                var value = this.scene.map.collision_layer[x][y];
+                
+                if( value == 0 ){
+                    var $tile = $('<div class="tile collision"></div>');
+                    this.drawTile($tile,x,y);
+                }
+                
+            }
+        }
+        
     },
     
     /*
@@ -95,7 +108,7 @@ View.prototype = {
     */
     drawTile : function($tile,x,y){
         var $parent = $(this.scene.parent);
-        $tile.css({left: this.scene.tile_w*x, top: this.scene.tile_w*y });
+        $tile.css({top: this.scene.tile_w*x, left: this.scene.tile_w*y });
         $parent.append($tile);
     },
     

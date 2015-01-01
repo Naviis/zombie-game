@@ -5,6 +5,7 @@ var Editor = function(){
     this.current_layer = 0;
     this.grid_hidden = false;
     this.map = {
+        map_name: '',
         tiles_layers : [[]],
         collision_layer : [],
         evolutive_layer : [],
@@ -22,6 +23,11 @@ Editor.prototype = {
     addEvents : function(){
         
         var self = this;
+        
+        //Name
+        $('input[name=name]').change(function(){
+            self.map.map_name = $(this).val();
+        });
         
         //Width
         $('input[name=width]').change(function(){
@@ -76,24 +82,24 @@ Editor.prototype = {
             switch(type){
                     
                 case 'none':
-                    self.map.tiles_layers[self.current_layer][y][x] = self.current_tile.attr('data-class');
+                    self.map.tiles_layers[self.current_layer][x][y] = self.current_tile.attr('data-class');
                     self.draw();
                 break;
                 
                 case 'collision':
-                    self.map.collision_layer[y][x] = 0;
+                    self.map.collision_layer[x][y] = 0;
                     self.draw();
                 break;
                 
                 case 'evolutive':
-                    self.map.evolutive_layer[y][x] = self.current_tile.attr('data-class');
+                    self.map.evolutive_layer[x][y] = self.current_tile.attr('data-class');
                     //Reset tile layers
                     for( var l = 0; l < self.map.tiles_layers.length; l++ ){
                         var layer = self.map.tiles_layers[l];
                         if( l == 0 ){
-                            layer[y][x] = 'tile_base_1';
+                            layer[x][y] = 'tile_base_1';
                         }else{
-                            layer[y][x] = '';
+                            layer[x][y] = '';
                         }
                     }
                     self.draw();
@@ -101,17 +107,17 @@ Editor.prototype = {
                 
                 case 'erase_tile':
                     var content = self.current_layer == 0 ? 'tile_base_1' : '';
-                    self.map.tiles_layers[self.current_layer][y][x] = content;
+                    self.map.tiles_layers[self.current_layer][x][y] = content;
                     self.draw();
                 break;
                     
                 case 'erase_collision':
-                    self.map.collision_layer[y][x] = 1;
+                    self.map.collision_layer[x][y] = 1;
                     self.draw();
                 break;
                 
                 case 'erase_evolutive':
-                    self.map.evolutive_layer[y][x] = 0;
+                    self.map.evolutive_layer[x][y] = 0;
                     self.draw();
                 break;
                 
@@ -146,8 +152,19 @@ Editor.prototype = {
                     self.map.players.push({"type":player_type,"x":x,"y":y,"slot_1":"pistol"});
                     self.draw();
                 break;
-            }
+            }       
             
+        });
+        
+        // export
+        $('.export').click(function(){
+            var content = JSON.stringify(self.map);
+            $('.export_result span').html(content).parent().fadeIn();
+        });
+        
+        // close export
+        $('.close').click(function(){
+            $('.export_result').fadeOut();
         });
         
     },
@@ -159,15 +176,15 @@ Editor.prototype = {
             
             var layer = this.map.tiles_layers[l];
             
-            for( var h = 0; h < this.height; h++ ){
+            for( var x = 0; x < this.height; x++ ){
                 
-                if( typeof(layer[h]) == 'undefined' ){
-                    layer[h] = [];
+                if( typeof(layer[x]) == 'undefined' ){
+                    layer[x] = [];
                 }
                 
-                for( var w = 0; w < this.width; w++ ){
-                    if( typeof(layer[h][w]) == 'undefined' ){
-                        layer[h][w] = l == 0 ? 'tile_base_1' : '';
+                for( var y = 0; y < this.width; y++ ){
+                    if( typeof(layer[x][y]) == 'undefined' ){
+                        layer[x][y] = l == 0 ? 'tile_base_1' : '';
                     }
                 }
             }
@@ -175,30 +192,30 @@ Editor.prototype = {
         
         // Change collision array
         var collision = this.map.collision_layer;
-        for( var h = 0; h < this.height; h++ ){
+        for( var x = 0; x < this.height; x++ ){
 
-            if( typeof(collision[h]) == 'undefined' ){
-                collision[h] = [];
+            if( typeof(collision[x]) == 'undefined' ){
+                collision[x] = [];
             }
 
-            for( var w = 0; w < this.width; w++ ){
-                if( typeof(collision[h][w]) == 'undefined' ){
-                    collision[h][w] = 1;
+            for( var y = 0; y < this.width; y++ ){
+                if( typeof(collision[x][y]) == 'undefined' ){
+                    collision[x][y] = 1;
                 }
             }
         }
         
         // Change evolutive array
         var evolutive = this.map.evolutive_layer;
-        for( var h = 0; h < this.width; h++ ){
+        for( var x = 0; x < this.width; x++ ){
 
-            if( typeof(evolutive[h]) == 'undefined' ){
-                evolutive[h] = [];
+            if( typeof(evolutive[x]) == 'undefined' ){
+                evolutive[x] = [];
             }
 
-            for( var w = 0; w < this.height; w++ ){
-                if( typeof(evolutive[h][w]) == 'undefined' ){
-                    evolutive[h][w] = 0;
+            for( var y = 0; y < this.height; y++ ){
+                if( typeof(evolutive[x][y]) == 'undefined' ){
+                    evolutive[x][y] = 0;
                 }
             }
         }        
@@ -244,9 +261,9 @@ Editor.prototype = {
         /* Draw tiles */
         for( var l = 0; l < this.map.tiles_layers.length ; l++ ){
             var layer = this.map.tiles_layers[l];
-            for( var y = 0; y < layer.length ; y++ ){
-                for( var x = 0; x < layer[0].length ; x++ ){
-                    var value = layer[y][x];
+            for( var x = 0; x < layer.length ; x++ ){
+                for( var y = 0; y < layer[0].length ; y++ ){
+                    var value = layer[x][y];
                     
                     if( value != '' ){
                         var $tile = $('<div class="tile"></div>').addClass(value)
@@ -259,9 +276,9 @@ Editor.prototype = {
         }
         
         /* Draw evolutives */
-        for( var y = 0; y < this.map.evolutive_layer.length ; y++ ){
-            for( var x = 0; x < this.map.evolutive_layer[0].length ; x++ ){
-                var value = this.map.evolutive_layer[y][x];
+        for( var x = 0; x < this.map.evolutive_layer.length ; x++ ){
+            for( var y = 0; y < this.map.evolutive_layer[0].length ; y++ ){
+                var value = this.map.evolutive_layer[x][y];
                 
                 if( value !== 0 ){
                     var $tile = $('<div class="tile evolutive"></div>').addClass(value).attr('id','tile_'+x+'_'+y);
@@ -272,9 +289,9 @@ Editor.prototype = {
         }
         
         /* Draw Collision */
-        for( var y = 0; y < this.map.collision_layer.length ; y++ ){
-            for( var x = 0; x < this.map.collision_layer[0].length ; x++ ){
-                var value = this.map.collision_layer[y][x];
+        for( var x = 0; x < this.map.collision_layer.length ; x++ ){
+            for( var y = 0; y < this.map.collision_layer[0].length ; y++ ){
+                var value = this.map.collision_layer[x][y];
                 
                 if( value == 0 ){
                     var $tile = $('<div class="tile collision"></div>');
@@ -302,7 +319,7 @@ Editor.prototype = {
     
     drawTile : function($tile,x,y){
         var $parent = $('.wrapper');
-        $tile.css({left: 50*x, top: 50*y });
+        $tile.css({top: 50*x, left: 50*y });
         $parent.append($tile);
     },
 }

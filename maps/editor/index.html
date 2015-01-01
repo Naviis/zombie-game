@@ -17,10 +17,16 @@
 <body>
 	
 	<div class="viewport">
+        <div class="export_result">
+           <div class="close">&times;</div>
+            <span></span>
+        </div>
 	    <div class="wrapper"></div>
 	</div>
 	
 	<div class="panel">
+        
+        <label for="">Nom</label> <input type="text" value="" name="name">
         
         <h4>Dimensions</h4>
         
@@ -107,6 +113,8 @@
 	        <div class="tile erase" data-type="erase_monster">GM</div>
 	        <div class="tile erase" data-type="erase_player">GP</div>
 	    </div>
+	    
+	    <button class="export">Exporter</button>
 	</div>
 	
 	<script src="../../lib/jquery.min.js"></script>

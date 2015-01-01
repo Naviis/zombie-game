@@ -74,29 +74,28 @@ Scene.prototype = {
             
             if( resPlayerCheck !== false){
                 
-                // If a player is return, attack and stop moves for the monster
-                if( resPlayerCheck.player ){
-                    this.handleAttack(resPlayerCheck.player);
-                    break;
+                // If a player is returned, attack and stop moves for the monster
+                if( resPlayerCheck.player ){                    
+                    path = [];
+                    this.handleAttack(resPlayerCheck.player);                 
                 }                    
                 //else go to player
                 else{
                     path = resPlayerCheck;
                 }
             }
-                
-            
+                 
             //Loop on path. If max movement is passed, stop. Don t move if no path
             for( var j = 0; j < path.length ; j++ ){
-                
+
                 var coordinates = path[j];
                 
                 // Stop move if player or door in the way or max move reached
                 if( this.checkPlayerPresenceOnTile(coordinates) || this.checkDoorPresenceOnTile(coordinates) || j >= monster.move_speed)
                     break;
-                
+
                 this.moveOneMonster(monster,coordinates,i,j);                  
-            }
+            } 
         }
         
         return;
@@ -193,7 +192,7 @@ Scene.prototype = {
         Check if there is a door on the tile
     */
     checkDoorPresenceOnTile : function(coordinates){
-        return this.map.evolutive_layer[coordinates.x][coordinates.y] == 'door';
+        return this.map.evolutive_layer[coordinates.x][coordinates.y] != 0;
     },
     
     /*
@@ -232,8 +231,10 @@ Scene.prototype = {
         Retrieve a path from A to B
     */
     getPath : function(xStart,yStart,xEnd,yEnd){
+        
         var graph = new Graph(this.map.collision_layer);
         var start = graph.grid[xStart][yStart];
+        
         var end = graph.grid[xEnd][yEnd];
         var result = astar.search(graph, start, end);
         
@@ -245,7 +246,7 @@ Scene.prototype = {
     */
     handleAttack: function(player){        
         if( player.takeDamage() <= 0 )
-            alert('game over');
+            //alert('game over');
         
         this.view.draw();
     },
